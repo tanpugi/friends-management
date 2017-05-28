@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 @Entity
-public class UserFollower {
+public class FollowerEntity {
 
 	@Id
 	private String id;

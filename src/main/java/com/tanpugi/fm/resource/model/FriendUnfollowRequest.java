@@ -1,7 +1,7 @@
-package com.tanpugi.fm.resource.request;
+package com.tanpugi.fm.resource.model;
 
-public class FriendFollowRequest {
-
+public class FriendUnfollowRequest {
+	
 	private String requestor;
 	private String target;
 
@@ -17,4 +17,5 @@ public class FriendFollowRequest {
 	public void setTarget(String target) {
 		this.target = target;
 	}
+
 }

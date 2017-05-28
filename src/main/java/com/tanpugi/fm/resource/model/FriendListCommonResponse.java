@@ -1,10 +1,9 @@
-package com.tanpugi.fm.resource.response;
+package com.tanpugi.fm.resource.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendListResponse extends DefaultResponse {
-
+public class FriendListCommonResponse extends DefaultResponse {
 	private List<String> friends = new ArrayList<>();
 	
 	public List<String> getFriends() {

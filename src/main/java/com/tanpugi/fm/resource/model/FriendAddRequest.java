@@ -1,4 +1,4 @@
-package com.tanpugi.fm.resource.request;
+package com.tanpugi.fm.resource.model;
 
 import java.util.List;
 

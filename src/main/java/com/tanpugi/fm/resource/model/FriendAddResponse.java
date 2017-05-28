@@ -1,4 +1,4 @@
-package com.tanpugi.fm.resource.response;
+package com.tanpugi.fm.resource.model;
 
 public class FriendAddResponse extends DefaultResponse {
 

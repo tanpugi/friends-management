@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tanpugi.fm.resource.request.FriendAddRequest;
-import com.tanpugi.fm.resource.request.FriendAddUpdateRequest;
-import com.tanpugi.fm.resource.request.FriendFollowRequest;
-import com.tanpugi.fm.resource.request.FriendListCommonRequest;
-import com.tanpugi.fm.resource.request.FriendListRequest;
-import com.tanpugi.fm.resource.request.FriendUnfollowRequest;
-import com.tanpugi.fm.resource.response.FriendAddResponse;
-import com.tanpugi.fm.resource.response.FriendAddUpdateResponse;
-import com.tanpugi.fm.resource.response.FriendFollowResponse;
-import com.tanpugi.fm.resource.response.FriendListCommonResponse;
-import com.tanpugi.fm.resource.response.FriendListResponse;
-import com.tanpugi.fm.resource.response.FriendUnfollowResponse;
+import com.tanpugi.fm.resource.model.FriendAddRequest;
+import com.tanpugi.fm.resource.model.FriendAddResponse;
+import com.tanpugi.fm.resource.model.FriendAddUpdateRequest;
+import com.tanpugi.fm.resource.model.FriendAddUpdateResponse;
+import com.tanpugi.fm.resource.model.FriendFollowRequest;
+import com.tanpugi.fm.resource.model.FriendFollowResponse;
+import com.tanpugi.fm.resource.model.FriendListCommonRequest;
+import com.tanpugi.fm.resource.model.FriendListCommonResponse;
+import com.tanpugi.fm.resource.model.FriendListRequest;
+import com.tanpugi.fm.resource.model.FriendListResponse;
+import com.tanpugi.fm.resource.model.FriendUnfollowRequest;
+import com.tanpugi.fm.resource.model.FriendUnfollowResponse;
 
 @RestController
 @RequestMapping("/friend")
