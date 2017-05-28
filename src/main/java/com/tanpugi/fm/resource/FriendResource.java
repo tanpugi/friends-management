@@ -1,9 +1,12 @@
 package com.tanpugi.fm.resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tanpugi.fm.resource.model.FriendAddRequest;
@@ -18,56 +21,95 @@ import com.tanpugi.fm.resource.model.FriendListRequest;
 import com.tanpugi.fm.resource.model.FriendListResponse;
 import com.tanpugi.fm.resource.model.FriendUnfollowRequest;
 import com.tanpugi.fm.resource.model.FriendUnfollowResponse;
+import com.tanpugi.fm.service.FriendService;
+import com.tanpugi.fm.service.model.DefaultReturnModel;
+import com.tanpugi.fm.service.model.FriendAddUpdateReturnModel;
+import com.tanpugi.fm.service.model.FriendListReturnModel;
 
 @RestController
 @RequestMapping("/friend")
 public class FriendResource {
 	
+	@Autowired
+	private FriendService friendService;
+	
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST)
 	public FriendAddResponse add(@RequestBody FriendAddRequest request) {
+		String personFrom = request.getFriends().get(0);
+		String personTo = request.getFriends().get(1);
+		
+		DefaultReturnModel returnModel =
+			friendService.addConnection(personFrom, personTo);
+
 		FriendAddResponse response = new FriendAddResponse();
-		response.setSuccess(true);
+		response.initResponse(returnModel);
+
 		return response;
 	}
 
 	@ResponseBody
-	@RequestMapping(method=RequestMethod.GET, value="list")
-	public FriendListResponse list(@RequestBody FriendListRequest request) {
+	@RequestMapping(method=RequestMethod.POST, value="list")
+	public FriendListResponse list(@RequestBody FriendListRequest request) {		
+		FriendListReturnModel returnModel =
+			friendService.listConnections(request.getUser());
+	
 		FriendListResponse response = new FriendListResponse();
-		response.setSuccess(true);
+		response.initResponse(returnModel);
+		response.setFriends(returnModel.getConnections());
+		
 		return response;
 	}
 
 	@ResponseBody
-	@RequestMapping(method=RequestMethod.GET, value="listcommon")
-	public FriendListCommonResponse list(@RequestBody FriendListCommonRequest request) {
+	@RequestMapping(method=RequestMethod.POST, value="listcommon")
+	public FriendListCommonResponse listCommon(@RequestBody FriendListCommonRequest request) {
+		String personFrom1 = request.getFriends().get(0);
+		String personFrom2 = request.getFriends().get(1);
+		
+		FriendListReturnModel returnModel =
+			friendService.listCommonConnections(personFrom1, personFrom2);
+
 		FriendListCommonResponse response = new FriendListCommonResponse();
-		response.setSuccess(true);
+		response.initResponse(returnModel);
+		response.setFriends(returnModel.getConnections());
+		
 		return response;
 	}
 	
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST, value="follow")
 	public FriendFollowResponse follow(@RequestBody FriendFollowRequest request) {
+		DefaultReturnModel returnModel =
+				friendService.follow(request.getTarget(), request.getRequestor());
+
 		FriendFollowResponse response = new FriendFollowResponse();
-		response.setSuccess(true);
+		response.initResponse(returnModel);
+		
 		return response;
 	}
 
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.DELETE, value="follow")
-	public FriendUnfollowResponse follow(@RequestBody FriendUnfollowRequest request) {
+	public FriendUnfollowResponse unfollow(@RequestBody FriendUnfollowRequest request) {
+		DefaultReturnModel returnModel =
+				friendService.unfollow(request.getTarget(), request.getRequestor());
+		
 		FriendUnfollowResponse response = new FriendUnfollowResponse();
-		response.setSuccess(true);
+		response.initResponse(returnModel);
+		
 		return response;
 	}
 
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST, value="update")
-	public FriendAddUpdateResponse follow(@RequestBody FriendAddUpdateRequest request) {
+	public FriendAddUpdateResponse addUpdate(@RequestBody FriendAddUpdateRequest request) {
+		FriendAddUpdateReturnModel returnModel = friendService.addUpdate(request.getSender(), request.getText());
+
 		FriendAddUpdateResponse response = new FriendAddUpdateResponse();
-		response.setSuccess(true);
+		response.initResponse(returnModel);
+		response.setRecipients(returnModel.getRecipients());
+
 		return response;
 	}
 }
