@@ -7,13 +7,13 @@ import org.hibernate.validator.constraints.Email;
 public class FriendListRequest {
 
 	@NotNull @Email
-	private String user;
+	private String email;
 	
-	public String getUser() {
-		return user;
+	public String getEmail() {
+		return email;
 	}
 	
-	public void setUser(String user) {
-		this.user = user;
+	public void setEmail(String user) {
+		this.email = user;
 	}
 }

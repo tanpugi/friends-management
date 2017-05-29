@@ -51,10 +51,10 @@ public class FriendResource {
 	}
 
 	@ResponseBody
-	@RequestMapping(method=RequestMethod.POST, value="list")
+	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST}, value="list")
 	public FriendListResponse list(@Valid @RequestBody FriendListRequest request) {		
 		FriendListReturnModel returnModel =
-			friendService.listConnections(request.getUser());
+			friendService.listConnections(request.getEmail());
 	
 		FriendListResponse response = new FriendListResponse();
 		response.initResponse(returnModel);
@@ -64,7 +64,7 @@ public class FriendResource {
 	}
 
 	@ResponseBody
-	@RequestMapping(method=RequestMethod.POST, value="listcommon")
+	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST}, value="listcommon")
 	public FriendListCommonResponse listCommon(@Valid @RequestBody FriendListCommonRequest request) {
 		String personFrom1 = request.getFriends().get(0);
 		String personFrom2 = request.getFriends().get(1);
