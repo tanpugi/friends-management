@@ -1,8 +1,14 @@
 package com.tanpugi.fm.resource.model;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+
 public class FriendAddUpdateRequest {
 
+	@NotNull @Email
 	private String sender;
+	@NotNull
 	private String text;
 	public String getSender() {
 		return sender;

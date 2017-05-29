@@ -3,7 +3,7 @@ package com.tanpugi.fm.service.model;
 public class DefaultReturnModel {
 
 	private String errorMessage;
-	private ReturnCode returnCode;
+	private ReturnCode returnCode = ReturnCode.OK;
 
 	public String getErrorMessage() {
 		return errorMessage;

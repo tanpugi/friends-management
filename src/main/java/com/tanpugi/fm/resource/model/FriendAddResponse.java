@@ -1,5 +1,7 @@
 package com.tanpugi.fm.resource.model;
 
-public class FriendAddResponse extends DefaultResponse {
+import com.tanpugi.fm.ApplicationDefaultResponse;
+
+public class FriendAddResponse extends ApplicationDefaultResponse {
 
 }

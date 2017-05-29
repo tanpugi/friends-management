@@ -1,8 +1,14 @@
 package com.tanpugi.fm.resource.model;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+
 public class FriendUnfollowRequest {
 	
+	@NotNull @Email
 	private String requestor;
+	@NotNull @Email
 	private String target;
 
 	public String getRequestor() {

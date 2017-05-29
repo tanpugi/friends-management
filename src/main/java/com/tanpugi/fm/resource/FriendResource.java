@@ -1,5 +1,7 @@
 package com.tanpugi.fm.resource;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +37,7 @@ public class FriendResource {
 	
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST)
-	public FriendAddResponse add(@RequestBody FriendAddRequest request) {
+	public FriendAddResponse add(@Valid @RequestBody FriendAddRequest request) {
 		String personFrom = request.getFriends().get(0);
 		String personTo = request.getFriends().get(1);
 		
@@ -50,7 +52,7 @@ public class FriendResource {
 
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST, value="list")
-	public FriendListResponse list(@RequestBody FriendListRequest request) {		
+	public FriendListResponse list(@Valid @RequestBody FriendListRequest request) {		
 		FriendListReturnModel returnModel =
 			friendService.listConnections(request.getUser());
 	
@@ -63,7 +65,7 @@ public class FriendResource {
 
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST, value="listcommon")
-	public FriendListCommonResponse listCommon(@RequestBody FriendListCommonRequest request) {
+	public FriendListCommonResponse listCommon(@Valid @RequestBody FriendListCommonRequest request) {
 		String personFrom1 = request.getFriends().get(0);
 		String personFrom2 = request.getFriends().get(1);
 		
@@ -79,7 +81,7 @@ public class FriendResource {
 	
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST, value="follow")
-	public FriendFollowResponse follow(@RequestBody FriendFollowRequest request) {
+	public FriendFollowResponse follow(@Valid @RequestBody FriendFollowRequest request) {
 		DefaultReturnModel returnModel =
 				friendService.follow(request.getTarget(), request.getRequestor());
 
@@ -91,7 +93,7 @@ public class FriendResource {
 
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.DELETE, value="follow")
-	public FriendUnfollowResponse unfollow(@RequestBody FriendUnfollowRequest request) {
+	public FriendUnfollowResponse unfollow(@Valid @RequestBody FriendUnfollowRequest request) {
 		DefaultReturnModel returnModel =
 				friendService.unfollow(request.getTarget(), request.getRequestor());
 		
@@ -103,7 +105,7 @@ public class FriendResource {
 
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST, value="update")
-	public FriendAddUpdateResponse addUpdate(@RequestBody FriendAddUpdateRequest request) {
+	public FriendAddUpdateResponse addUpdate(@Valid @RequestBody FriendAddUpdateRequest request) {
 		FriendAddUpdateReturnModel returnModel = friendService.addUpdate(request.getSender(), request.getText());
 
 		FriendAddUpdateResponse response = new FriendAddUpdateResponse();

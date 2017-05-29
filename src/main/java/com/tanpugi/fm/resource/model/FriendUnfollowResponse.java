@@ -1,5 +1,7 @@
 package com.tanpugi.fm.resource.model;
 
-public class FriendUnfollowResponse extends DefaultResponse {
+import com.tanpugi.fm.ApplicationDefaultResponse;
+
+public class FriendUnfollowResponse extends ApplicationDefaultResponse {
 
 }

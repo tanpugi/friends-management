@@ -5,8 +5,9 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.tanpugi.fm.ApplicationDefaultResponse;
 
-public class FriendListResponse extends DefaultResponse {
+public class FriendListResponse extends ApplicationDefaultResponse {
 
 	@JsonInclude(value=Include.NON_NULL)
 	private List<String> friends;

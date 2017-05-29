@@ -2,8 +2,12 @@ package com.tanpugi.fm.resource.model;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class FriendAddRequest {
 
+	@NotNull @Size(min=2,max=2)
 	private List<String> friends;
 	
 	public List<String> getFriends() {
